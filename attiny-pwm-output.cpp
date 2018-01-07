@@ -29,7 +29,7 @@ void evaluate(Context ctx) {
   //send to analogWrite taking uchar
   
   uint8_t val =
-      frac.getFraction() &
+      duty.getFraction() &
       (~0ULL & (~0ULL << ((sizeof(unsigned long long) * CHAR_BIT) - CHAR_BIT)));
 
   ::analogWrite(port, val);
