@@ -1,11 +1,7 @@
-{
-  { #global }
-}
+{{ #global }}
 #include <FixedPoints.h>
 #include <FixedPointsCommon.h>
-{
-  { / global }
-}
+{{ / global }}
 
 struct State {
   TimeMs nextTrig;
