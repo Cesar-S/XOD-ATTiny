@@ -20,7 +20,7 @@ void evaluate(Context ctx) {
   TimeMs tNow = transactionTime();
   TimeMs dt = (double)(getValue<input_IVAL>(ctx).getInteger()) * 1000 +
               (getValue<input_IVAL>(ctx).getFraction() /
-               (double)(Number(0, ~0).getInternal())) *
+               (double)(Number(0, ~0).getInternal() + 1)) *
                   1000;
 
   TimeMs tNext = tNow + dt;
