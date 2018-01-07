@@ -17,7 +17,7 @@ struct State {
 
 void evaluate(Context ctx) {
   State* state = getState(ctx);
-  const int port = (int)getValue<input_PORT>(ctx).getInteger();
+  const int port = ::floorFixed(getValue<input_PORT>(ctx));
   if (port != state->configuredPort) {
     ::pinMode(port, OUTPUT);
     // Store configured port so to avoid repeating `pinMode` call if just
