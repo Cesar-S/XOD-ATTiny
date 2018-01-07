@@ -8,10 +8,16 @@
 #define ATTINY_XOD
 
 #include <stddef.h>
+#include <limits.h>
 #include <FixedPoints.h>
 #include <FixedPointsCommon.h>
 
 #define FIXED_POINTS_NO_RANDOM
+
+namespace XODATTiny {
+
+#define INTEGER_BITS (UCHAR_MAX * CHAR_BIT)
+#define FRACTIONAL_BITS ((UCHAR_MAX - 1) * CHAR_BIT)
 
 template <unsigned Integer, unsigned Fraction>
 struct XODFixedPoint : SFixed<Integer, Fraction> {
@@ -35,5 +41,9 @@ struct XODFixedPoint : SFixed<Integer, Fraction> {
     return static_cast<IntegerType>(*this);
   }
 };
+
+}
+
+using ATTinyNumber = XODATTiny::XODFixedPoint<INTEGER_BITS, FRACTIONAL_BITS>;
 
 #endif
