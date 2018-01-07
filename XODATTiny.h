@@ -11,6 +11,8 @@
 #include <FixedPoints.h>
 #include <FixedPointsCommon.h>
 
+#define FIXED_POINTS_NO_RANDOM
+
 template <unsigned Integer, unsigned Fraction>
 struct XODFixedPoint : SFixed<Integer, Fraction> {
   typedef SFixed<Integer, Fraction> fixed_point_t;
