@@ -7,9 +7,7 @@ struct State {
   int configuredPort = -1;
 };
 
-{
-  { GENERATED_CODE }
-}
+{{ GENERATED_CODE }}
 
 void evaluate(Context ctx) {
   State* state = getState(ctx);
