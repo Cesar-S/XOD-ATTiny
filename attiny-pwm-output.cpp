@@ -24,14 +24,16 @@ void evaluate(Context ctx) {
     // SIG is updated
     state->configuredPort = port;
   }
+  
+  //check bounds for duty cycle input
 
   auto duty = getValue<input_DUTY>(ctx);
-  duty = duty > Number(1, 0) ? Number(1, 0)
+  duty = duty >= Number(1, 0) ? Number(0, 0.99)
                              : (duty < Number(0, 0)) ? Number(0, 0) : duty;
-
-  Number frac =
-      Number(0, (duty.getFraction() / (double)(Number(0, ~0).getInternal())));
-
+  
+  //Pick off most significant byte of fixed point fraction and
+  //send to analogWrite taking uchar
+  
   uint8_t val =
       frac.getFraction() &
       (~0ULL & (~0ULL << ((sizeof(unsigned long long) * CHAR_BIT) - CHAR_BIT)));
