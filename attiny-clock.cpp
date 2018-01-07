@@ -7,9 +7,7 @@ struct State {
   TimeMs nextTrig;
 };
 
-{
-  { GENERATED_CODE }
-}
+{{ GENERATED_CODE }}
 
 void evaluate(Context ctx) {
   State* state = getState(ctx);
