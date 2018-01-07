@@ -16,8 +16,8 @@
 
 namespace XODATTiny {
 
-#define INTEGER_BITS (CHAR_BIT - 1)
-#define FRACTIONAL_BITS (CHAR_BIT)
+#define INTEGER_BITS (sizeof(uint8_t) * (CHAR_BIT - 1))
+#define FRACTIONAL_BITS (sizeof(uint8_t) * CHAR_BIT)
 
 template <unsigned Integer, unsigned Fraction>
 struct XODFixedPoint : SFixed<Integer, Fraction> {
