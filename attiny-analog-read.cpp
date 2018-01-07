@@ -19,7 +19,7 @@ void evaluate(Context ctx) {
   if (!isInputDirty<input_UPD>(ctx)) return;
 
   State* state = getState(ctx);
-  const int port = (int)getValue<input_PORT>(ctx).getInteger();
+  const int port = ::floorFixed(getValue<input_PORT>(ctx)).getInteger();
   if (port != state->configuredPort) {
     ::pinMode(port, INPUT);
     // Store configured port so to avoid repeating `pinMode` on
