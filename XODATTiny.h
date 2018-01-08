@@ -1,3 +1,4 @@
+
 /*
   Subclass of a FixedPoints signed fixed-point number,
   with some operators made implicit rather than
@@ -14,15 +15,15 @@
 
 #define FIXED_POINTS_NO_RANDOM
 
-namespace XODATTiny {
+#define INTEGER_BITS ((sizeof(uint8_t)) * (CHAR_BIT - 1))
+#define FRACTIONAL_BITS ((sizeof(uint8_t)) * (CHAR_BIT))
 
-#define INTEGER_BITS (sizeof(uint8_t) * (CHAR_BIT - 1))
-#define FRACTIONAL_BITS (sizeof(uint8_t) * CHAR_BIT)
+namespace XODATTiny {
 
 template <unsigned Integer, unsigned Fraction>
 struct XODFixedPoint : SFixed<Integer, Fraction> {
   typedef SFixed<Integer, Fraction> fixed_point_t;
-  using fixed_point_t::fixed_point_t;  // pull in base constructors
+  using fixed_point_t::fixed_point_t;         // pull in base constructors
   using typename fixed_point_t::IntegerType;  // pull in "IntegerType"
 
   using fixed_point_t::operator double;
@@ -42,6 +43,11 @@ struct XODFixedPoint : SFixed<Integer, Fraction> {
   }
 };
 
+template <typename R>
+static constexpr R bitmask(unsigned int const onecount) {
+  return static_cast<R>(-(onecount != 0)) &
+         (static_cast<R>(-1) >> ((sizeof(R) * CHAR_BIT) - onecount));
+}
 }
 
 using ATTinyNumber = XODATTiny::XODFixedPoint<INTEGER_BITS, FRACTIONAL_BITS>;
