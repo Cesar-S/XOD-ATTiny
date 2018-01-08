@@ -43,11 +43,6 @@ struct XODFixedPoint : SFixed<Integer, Fraction> {
   }
 };
 
-template <typename R>
-static constexpr R bitmask(unsigned int const onecount) {
-  return static_cast<R>(-(onecount != 0)) &
-         (static_cast<R>(-1) >> ((sizeof(R) * CHAR_BIT) - onecount));
-}
 }
 
 using ATTinyNumber = XODATTiny::XODFixedPoint<INTEGER_BITS, FRACTIONAL_BITS>;
