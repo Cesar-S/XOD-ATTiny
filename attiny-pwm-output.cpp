@@ -27,8 +27,7 @@ void evaluate(Context ctx) {
   
   //Pick off most significant byte of fixed point fraction and
   //send to analogWrite taking uchar
-  
-  auto val_convert = (SQ7x8)(duty);
-  uint8_t val = val_convert.getFraction();
-  ::analogWrite(port, val);
+
+ uint8_t val = (unsigned long long)(duty.getFraction()) >> FRACTIONAL_BITS - CHAR_BIT;
+ ::analogWrite(port, val);
 }
