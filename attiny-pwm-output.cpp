@@ -22,8 +22,8 @@ void evaluate(Context ctx) {
   //check bounds for duty cycle input
 
   auto duty = getValue<input_DUTY>(ctx);
-  duty = duty >= Number(1, 0) ? Number(0.99)
-                             : (duty < Number(0, 0)) ? Number(0.) : duty;
+  duty = duty >= Number(1.) ? Number(0.99)
+                             : (duty < Number(0.)) ? Number(0.) : duty;
   
   //Pick off most significant byte of fixed point fraction and
   //send to analogWrite taking uchar
